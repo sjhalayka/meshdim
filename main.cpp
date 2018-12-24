@@ -9,11 +9,16 @@ int main(int argc, char **argv)
 		return 1;
 	}
 
+	indexed_mesh mesh;
+
 	if(false == mesh.load_from_binary_stereo_lithography_file(argv[1]))
 	{
 		cout << "Error: Could not properly read file " << argv[1] << endl;
 		return 2;
 	}
+
+	vector< vector<size_t> > tri_neighbours;
+	vector<vertex_3> tri_normals;
 
 	tri_neighbours.resize(mesh.triangles.size());
 	tri_normals.resize(mesh.triangles.size());
