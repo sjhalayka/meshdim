@@ -329,7 +329,7 @@ bool indexed_mesh::save_to_binary_stereo_lithography_file(const char *const file
 
 	const size_t header_size = 80;
 	vector<char> buffer(header_size, 0);
-	const unsigned int num_triangles = triangles.size(); // Must be 4-byte unsigned int.
+	const unsigned int num_triangles = static_cast<unsigned int>(triangles.size()); // Must be 4-byte unsigned int.
 	vertex_3 normal;
 
 	// Write blank header.
