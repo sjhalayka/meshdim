@@ -37,13 +37,13 @@ int main(int argc, char **argv)
 		float dot2 = n0.dot(n2);
 		float dot3 = n0.dot(n3);
 
-		float d = (dot1 + dot2 + dot3) / 3.0;
-		float measure = (1.0 - d) / 2.0;
+		float d = (dot1 + dot2 + dot3) / 3.0f;
+		float measure = (1.0f - d) / 2.0f;
 
 		final_measure += measure;
 	}
 
-	cout << final_measure << endl;
+	cout << "Dim: " << 2.0 + final_measure/mesh.triangles.size() << endl;
 
 	return 0;
 }
