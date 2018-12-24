@@ -3,7 +3,6 @@
 
 #include "primitives.h"
 #include "mesh.h"
-#include "string_utils.h"
 
 #include <cstdlib>
 
