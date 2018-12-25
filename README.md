@@ -1,1 +1,1 @@
-The code works on closed meshes, with no cracks, etc.
+The code works on closed meshes, with no cracks, holes, etc.
