@@ -30,6 +30,8 @@ int main(int argc, char **argv)
 
 	float final_measure = 0;
 
+	const float largest_area = mesh.get_largest_triangle_area();
+
 	for (size_t i = 0; i < mesh.triangles.size(); i++)
 	{
 		vertex_3 n0 = tri_normals[i];
@@ -44,7 +46,9 @@ int main(int argc, char **argv)
 		float d = (dot1 + dot2 + dot3) / 3.0f;
 		float measure = (1.0f - d) / 2.0f;
 
-		final_measure += measure;
+		const float triangle_area = mesh.get_triangle_area(i);
+
+		final_measure += measure * (triangle_area / largest_area);
 	}
 
 	cout << "Dim: " << 2.0 + final_measure/mesh.triangles.size() << endl;

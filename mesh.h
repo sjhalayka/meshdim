@@ -57,6 +57,24 @@ public:
 	float get_max_extent(void);
 	float set_max_extent(const float target_max_extent);
 	float get_triangle_area(const size_t tri_index);
+
+	float get_largest_triangle_area(void)
+	{
+		float largest_area = 0.0f;
+
+		for (size_t i = 0; i < triangles.size(); i++)
+		{
+			float area = get_triangle_area(i);
+
+			if (area > largest_area)
+				largest_area = area;
+		}
+
+		return largest_area;
+	}
+
+
+
 	float get_vertex_neighbourhood_area(const size_t vertex_index);
 	float get_area(void);
 	float set_area(const float target_area);
