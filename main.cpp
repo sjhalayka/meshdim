@@ -2,21 +2,27 @@
 
 int main(int argc, char **argv)
 {
+	// Check for commandline arguments
 	if(argc != 2)
 	{
 		cout << "Example usage: meshdim filename.stl" << endl;
 		return 1;
 	}
 
+	// Create a mesh
 	indexed_mesh mesh;
 
+	// Load from binary STL file
 	if(false == mesh.load_from_binary_stereo_lithography_file(argv[1]))
 	{
 		cout << "Error: Could not properly read file " << argv[1] << endl;
 		return 2;
 	}
 
+	// Store triangle neighbour indices for later use
 	vector< vector<size_t> > tri_neighbours;
+
+	// Store triangle normals for later use
 	vector<vertex_3> tri_normals;
 
 	tri_neighbours.resize(mesh.triangles.size());
@@ -30,24 +36,37 @@ int main(int argc, char **argv)
 
 	float final_measure = 0;
 
+	// For normalizing the measure
 	const float largest_area = mesh.get_largest_triangle_area();
 
 	for (size_t i = 0; i < mesh.triangles.size(); i++)
 	{
+		// Get current triangle's face normal
 		vertex_3 n0 = tri_normals[i];
+
+		// Get neighbouring triangles' face normals
+		// Assume that there are three neighbouring triangles
+		// This means that the mesh must be closed
+		// (e.g. no holes or cracks).
 		vertex_3 n1 = tri_normals[tri_neighbours[i][0]];
 		vertex_3 n2 = tri_normals[tri_neighbours[i][1]];
 		vertex_3 n3 = tri_normals[tri_neighbours[i][2]];
 
+		// Get dot products
 		float dot1 = n0.dot(n1);
 		float dot2 = n0.dot(n2);
 		float dot3 = n0.dot(n3);
 
+		// Average the dot products
 		float d = (dot1 + dot2 + dot3) / 3.0f;
+
+		// Normalize the average dot product
 		float measure = (1.0f - d) / 2.0f;
 
+		// Get current triangle area
 		const float triangle_area = mesh.get_triangle_area(i);
 
+		// Normalize the measure by area
 		final_measure += measure * (triangle_area / largest_area);
 	}
 
