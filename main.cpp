@@ -39,6 +39,7 @@ int main(int argc, char **argv)
 	// For normalizing the measure
 	const float largest_area = mesh.get_largest_triangle_area();
 
+	// For each triangle in the mesh
 	for (size_t i = 0; i < mesh.triangles.size(); i++)
 	{
 		// Get current triangle's face normal
