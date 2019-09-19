@@ -37,6 +37,7 @@ int main(int argc, char **argv)
 	float final_measure = 0;
 
 	// For normalizing the measure
+	// Thanks to JoeJ on gamedev.net for the idea
 	const float largest_area = mesh.get_largest_triangle_area();
 
 	// For each triangle in the mesh
