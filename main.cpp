@@ -44,26 +44,26 @@ int main(int argc, char **argv)
 	for (size_t i = 0; i < mesh.triangles.size(); i++)
 	{
 		// Get current triangle's face normal
-		vertex_3 n0 = tri_normals[i];
+		vertex_3 n_i = tri_normals[i];
 
 		// Get neighbouring triangles' face normals
 		// Assume that there are three neighbouring triangles
 		// This means that the mesh must be closed
 		// (e.g. no holes or cracks).
-		vertex_3 n1 = tri_normals[tri_neighbours[i][0]];
-		vertex_3 n2 = tri_normals[tri_neighbours[i][1]];
-		vertex_3 n3 = tri_normals[tri_neighbours[i][2]];
+		vertex_3 o_1 = tri_normals[tri_neighbours[i][0]];
+		vertex_3 o_2 = tri_normals[tri_neighbours[i][1]];
+		vertex_3 o_3 = tri_normals[tri_neighbours[i][2]];
 
 		// Get dot products
-		float dot1 = n0.dot(n1);
-		float dot2 = n0.dot(n2);
-		float dot3 = n0.dot(n3);
+		float dot1 = n_i.dot(o_1);
+		float dot2 = n_i.dot(o_2);
+		float dot3 = n_i.dot(o_3);
 
 		// Average the dot products
-		float d = (dot1 + dot2 + dot3) / 3.0f;
+		float d_i = (dot1 + dot2 + dot3) / 3.0f;
 
 		// Normalize the average dot product
-		float measure = (1.0f - d) / 2.0f;
+		float measure = (1.0f - d_i) / 2.0f;
 
 		// Get current triangle area
 		const float triangle_area = mesh.get_triangle_area(i);
