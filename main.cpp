@@ -3,7 +3,7 @@
 int main(int argc, char **argv)
 {
 	// Check for commandline arguments
-	if(argc != 2)
+	if(2 != argc)
 	{
 		cout << "Example usage: meshdim filename.stl" << endl;
 		return 1;
@@ -31,6 +31,13 @@ int main(int argc, char **argv)
 	for(size_t i = 0; i < mesh.triangles.size(); i++)
 	{
 		mesh.get_tri_neighbours(i, tri_neighbours[i]);
+
+		if (3 != tri_neighbours[i].size())
+		{
+			cout << "Error: Mesh is not closed." << endl;
+			return 3;
+		}
+
 		tri_normals[i] = mesh.get_tri_normal(i);
 	}
 
