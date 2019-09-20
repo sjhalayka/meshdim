@@ -28,10 +28,12 @@ int main(int argc, char **argv)
 	tri_neighbours.resize(mesh.triangles.size());
 	tri_normals.resize(mesh.triangles.size());
 
+	// For each triangle in the mesh
 	for(size_t i = 0; i < mesh.triangles.size(); i++)
 	{
 		mesh.get_tri_neighbours(i, tri_neighbours[i]);
 
+		// Make sure that the mesh is closed
 		if (3 != tri_neighbours[i].size())
 		{
 			cout << "Error: Mesh is not closed." << endl;
@@ -79,8 +81,10 @@ int main(int argc, char **argv)
 		final_measure += measure * (triangle_area / largest_area);
 	}
 
+	// Average the measure
 	float x = final_measure / mesh.triangles.size();
 
+	// Print the dimension
 	cout << "Dim: " << 2.0 + x << endl;
 
 	return 0;
