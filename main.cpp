@@ -63,13 +63,8 @@ int main(int argc, char **argv)
 		vertex_3 o_2 = tri_normals[tri_neighbours[i][1]];
 		vertex_3 o_3 = tri_normals[tri_neighbours[i][2]];
 
-		// Get dot products
-		float dot1 = n_i.dot(o_1);
-		float dot2 = n_i.dot(o_2);
-		float dot3 = n_i.dot(o_3);
-
 		// Average the dot products
-		float d_i = (dot1 + dot2 + dot3) / 3.0f;
+		float d_i = (n_i.dot(o_1) + n_i.dot(o_2) + n_i.dot(o_3)) / 3.0f;
 
 		// Normalize the average dot product
 		float measure = (1.0f - d_i) / 2.0f;
