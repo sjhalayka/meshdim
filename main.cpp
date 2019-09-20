@@ -56,9 +56,6 @@ int main(int argc, char **argv)
 		vertex_3 n_i = tri_normals[i];
 
 		// Get neighbouring triangles' face normals
-		// Assume that there are three neighbouring triangles
-		// This means that the mesh must be closed
-		// (e.g. no holes or cracks).
 		vertex_3 o_1 = tri_normals[tri_neighbours[i][0]];
 		vertex_3 o_2 = tri_normals[tri_neighbours[i][1]];
 		vertex_3 o_3 = tri_normals[tri_neighbours[i][2]];
