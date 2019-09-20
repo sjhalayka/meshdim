@@ -72,7 +72,9 @@ int main(int argc, char **argv)
 		final_measure += measure * (triangle_area / largest_area);
 	}
 
-	cout << "Dim: " << 2.0 + final_measure/mesh.triangles.size() << endl;
+	float x = final_measure / mesh.triangles.size();
+
+	cout << "Dim: " << 2.0 + x << endl;
 
 	return 0;
 }
