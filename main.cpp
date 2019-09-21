@@ -43,7 +43,7 @@ int main(int argc, char **argv)
 		tri_normals[i] = mesh.get_tri_normal(i);
 	}
 
-	float final_measure = 0;
+	float sum = 0;
 
 	// For normalizing the measure
 	// Thanks to JoeJ on gamedev.net for the idea
@@ -70,11 +70,11 @@ int main(int argc, char **argv)
 		const float triangle_area = mesh.get_triangle_area(i);
 
 		// Normalize the measure by area
-		final_measure += m_i * (triangle_area / largest_area);
+		sum += m_i * (triangle_area / largest_area);
 	}
 
 	// Average the measure
-	float lambda = final_measure / mesh.triangles.size();
+	float lambda = sum / mesh.triangles.size();
 
 	// Print the dimension
 	cout << "Dim: " << 2.0 + lambda << endl;
