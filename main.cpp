@@ -64,13 +64,13 @@ int main(int argc, char **argv)
 		float d_i = (n_i.dot(o_1) + n_i.dot(o_2) + n_i.dot(o_3)) / 3.0f;
 
 		// Normalize the average dot product
-		float measure = (1.0f - d_i) / 2.0f;
+		float m_i = (1.0f - d_i) / 2.0f;
 
 		// Get current triangle area
 		const float triangle_area = mesh.get_triangle_area(i);
 
 		// Normalize the measure by area
-		final_measure += measure * (triangle_area / largest_area);
+		final_measure += m_i * (triangle_area / largest_area);
 	}
 
 	// Average the measure
