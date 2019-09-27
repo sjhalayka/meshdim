@@ -93,6 +93,8 @@ int main(int argc, char **argv)
 			largest_len = c_len;
 	}
 
+	cout << "Longest edge: " << largest_len << endl;
+
 	// Average the measure
 	float lambda = sum / mesh.triangles.size();
 
