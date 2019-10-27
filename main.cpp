@@ -49,8 +49,6 @@ int main(int argc, char **argv)
 	// Thanks to JoeJ on gamedev.net for the idea
 	const float largest_area = mesh.get_largest_triangle_area();
 
-	double largest_len = 0;
-
 	// For each triangle in the mesh
 	for (size_t i = 0; i < mesh.triangles.size(); i++)
 	{
@@ -66,35 +64,15 @@ int main(int argc, char **argv)
 		float d_i = (n_i.dot(o_1) + n_i.dot(o_2) + n_i.dot(o_3)) / 3.0f;
 
 		// Normalize the average dot product
-		float m_i = (1.0f - d_i) / 2.0f;
+		float k_i = (1.0f - d_i) / 2.0f;
 
 		// Get current triangle area
 		const float triangle_area = mesh.get_triangle_area(i);
 
 		// Normalize the measure by area
-		sum += m_i * (triangle_area / largest_area);
-
-		// Find longest edge
-		vertex_3 a = mesh.vertices[mesh.triangles[i].vertex_indices[1]] - mesh.vertices[mesh.triangles[i].vertex_indices[0]];
-		vertex_3 b = mesh.vertices[mesh.triangles[i].vertex_indices[2]] - mesh.vertices[mesh.triangles[i].vertex_indices[0]];
-		vertex_3 c = mesh.vertices[mesh.triangles[i].vertex_indices[2]] - mesh.vertices[mesh.triangles[i].vertex_indices[1]];
-
-		float a_len = a.length();
-		float b_len = b.length();
-		float c_len = c.length();
-
-		if (a_len > largest_len)
-			largest_len = a_len;
-
-		if (b_len > largest_len)
-			largest_len = b_len;
-
-		if (c_len > largest_len)
-			largest_len = c_len;
+		sum += k_i * (triangle_area / largest_area);
 	}
-
-	cout << "Longest edge: " << largest_len << endl;
-
+	
 	// Average the measure
 	float lambda = sum / mesh.triangles.size();
 
