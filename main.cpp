@@ -74,10 +74,10 @@ int main(int argc, char **argv)
 	}
 	
 	// Average the measure
-	float lambda = sum / mesh.triangles.size();
+	float K = sum / mesh.triangles.size();
 
 	// Print the dimension
-	cout << "Dim: " << 2.0 + lambda << endl;
+	cout << "Dim: " << 2.0 + K << endl;
 
 	return 0;
 }
